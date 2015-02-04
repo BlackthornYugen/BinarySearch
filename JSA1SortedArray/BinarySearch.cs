@@ -44,7 +44,7 @@ namespace JSA1SortedArray
         /// <returns>Returns the index of needle or -1 if not found.</returns>
         public static int BinarySearch<T>(this IComparable<T>[] haystack, IComparable<T> needle)
         {
-            return haystack.BinarySearch(needle, haystack.Length);
+            return haystack.BinarySearch(needle, haystack.Length - 1);
         }
 
     }

@@ -53,7 +53,7 @@ namespace JSA1SortedArray
             }
             else
             {
-                int insertPosition = _storedTypes.BinarySearch((IComparable<T>)arg, _tail);
+                int insertPosition = _storedTypes.BinaryLocate((IComparable<T>)arg, _tail);
                 if (insertPosition < 0) insertPosition = _tail;
                 _storedTypes[insertPosition] = (IComparable<T>)arg;                
             }

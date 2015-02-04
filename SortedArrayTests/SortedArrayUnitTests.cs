@@ -8,6 +8,11 @@ namespace SortedArrayTests
 
     public class SortedArrayUnitTests
     {
+        /// <summary>
+        /// Check to see that the last inserted char is at the specified index
+        /// </summary>
+        /// <param name="s">A string of chars to insert</param>
+        /// <param name="i">The index to look for the last char</param>
         [TestCase("B", 0)]
         [TestCase("BD", 1)]
         [TestCase("BDC", 1)]

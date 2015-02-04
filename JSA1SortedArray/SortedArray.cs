@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,35 +22,41 @@ namespace JSA1SortedArray
             get { return (T)_storedTypes[index]; }
         }
 
-        private int BinarySearch(IComparable<T> arg)
-        {
-            int low = 0;
-            int high = _tail;
+        //public int BinarySearch(IComparable<T> arg)
+        //{
+        //    int low = 0;
+        //    int high = _tail;
 
-            while (low < high)
-            {
-                int midpoint = (high - low) / 2 + low;
-                int compareResult = _storedTypes[midpoint].CompareTo((T) arg);
+        //    while (low < high)
+        //    {
+        //        int midpoint = (high - low) / 2 + low;
+        //        int compareResult = _storedTypes[midpoint].CompareTo((T) arg);
 
-                if (compareResult > 0)
-                    low = midpoint + 1;
-                else
-                    high = midpoint;
-            }
+        //        if (compareResult > 0)
+        //            low = midpoint + 1;
+        //        else
+        //            high = midpoint;
+        //    }
 
-            if ((low == high) && (arg == _storedTypes[low]))
-                return low;
-            return -1;
-        }
+        //    if ((low == high) && (arg == _storedTypes[low]))
+        //        return low;
+        //    return -1;
+        //}
 
         public void Insert(T arg)
         {
             if (null == arg)
                 throw new ArgumentNullException("arg");
             if (IsEmpty())
+            {
                 _storedTypes[0] = (IComparable<T>) arg;
+            }
             else
-                _storedTypes[BinarySearch((IComparable<T>) arg)] = (IComparable<T>)arg;
+            {
+                int insertPosition = _storedTypes.BinarySearch((IComparable<T>)arg, _tail);
+                if (insertPosition < 0) insertPosition = _tail;
+                _storedTypes[insertPosition] = (IComparable<T>)arg;                
+            }
             _tail++;
         }
 

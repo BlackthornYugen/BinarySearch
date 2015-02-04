@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using JSA1SortedArray;
 using NUnit.Framework;
 
 namespace SortedArrayTests
 {
 
-    public class SATestSuite01
+    public class SortedArrayUnitTests
     {
         [TestCase("B", 0)]
         [TestCase("BD", 1)]
@@ -24,7 +21,8 @@ namespace SortedArrayTests
                 c = t;
                 sa.Insert(c);
             }
-            Assert.AreEqual(c, sa[i]);
+            // http://confluence.jetbrains.com/display/ReSharper/Specify+a+culture+in+string+conversion+explicitly
+            Assert.AreEqual(c.ToString(CultureInfo.InvariantCulture), sa[i].ToString(CultureInfo.InvariantCulture));
         }
 
         [Test]
@@ -51,6 +49,18 @@ namespace SortedArrayTests
             sa.Insert("Three Thing");
             sa.Insert("Four Thing");
             Assert.IsFalse(sa.IsEmpty(), "IsEmpty returned True after insert.");
+        }
+
+        [Test]
+        public void TestCantInsertTooMany()
+        {
+            var sa = new SortedArray<string>(4);
+            sa.Insert("One Thing");
+            sa.Insert("Two Thing");
+            sa.Insert("Three Thing");
+            sa.Insert("Four Thing");
+            // TODO: Throw different or new exception? 
+            Assert.Throws<IndexOutOfRangeException>(() => sa.Insert("Five Thing"));
         }
 
         [Test]

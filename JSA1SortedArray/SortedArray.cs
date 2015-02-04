@@ -19,29 +19,12 @@ namespace JSA1SortedArray
 
         public T this[int index]
         {
-            get { return (T)_storedTypes[index]; }
+            get
+            {
+                if (_storedTypes[index] == null) return default(T);
+                return (T)_storedTypes[index];
+            }
         }
-
-        //public int BinarySearch(IComparable<T> arg)
-        //{
-        //    int low = 0;
-        //    int high = _tail;
-
-        //    while (low < high)
-        //    {
-        //        int midpoint = (high - low) / 2 + low;
-        //        int compareResult = _storedTypes[midpoint].CompareTo((T) arg);
-
-        //        if (compareResult > 0)
-        //            low = midpoint + 1;
-        //        else
-        //            high = midpoint;
-        //    }
-
-        //    if ((low == high) && (arg == _storedTypes[low]))
-        //        return low;
-        //    return -1;
-        //}
 
         public void Insert(T arg)
         {
@@ -54,7 +37,9 @@ namespace JSA1SortedArray
             else
             {
                 int insertPosition = _storedTypes.BinaryLocate((IComparable<T>)arg, _tail);
-                if (insertPosition < 0) insertPosition = _tail;
+                if (insertPosition < 0) {insertPosition = _tail;}
+                for (int i = _tail; i > insertPosition; i--)
+                    _storedTypes[i] = _storedTypes[i - 1];
                 _storedTypes[insertPosition] = (IComparable<T>)arg;                
             }
             _tail++;

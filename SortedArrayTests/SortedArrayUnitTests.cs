@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Text;
 using JSA1SortedArray;
 using NUnit.Framework;
 
@@ -20,14 +21,35 @@ namespace SortedArrayTests
         public void SortPositionTest(String s, int i)
         {
             var sa = new SortedArray<char>(4);
-            char c = default(char);
-            foreach (char t in s)
+            char lastChar = ' ';
+            foreach (char c in s)
             {
-                c = t;
                 sa.Insert(c);
+                lastChar = c;
             }
             // http://confluence.jetbrains.com/display/ReSharper/Specify+a+culture+in+string+conversion+explicitly
-            Assert.AreEqual(c.ToString(CultureInfo.InvariantCulture), sa[i].ToString(CultureInfo.InvariantCulture));
+            Assert.AreEqual(lastChar.ToString(CultureInfo.InvariantCulture), sa[i].ToString(CultureInfo.InvariantCulture));
+        }
+
+        [TestCase("B", "B")]
+        [TestCase("BD", "BD")]
+        [TestCase("BDC", "BCD")]
+        [TestCase("BDCA", "ABCD")]
+        public void SortFullTest(String unsortedString, String expectedString)
+        {
+            var sa = new SortedArray<char>(4);
+            foreach (char c in unsortedString)
+            {
+                sa.Insert(c);
+            }
+            
+            StringBuilder sortedString = new StringBuilder("");
+            for (int i = 0; i < unsortedString.Length; i++)
+            {
+                sortedString.Append(sa[i]);
+            }
+
+            Assert.AreEqual(sortedString.ToString(), expectedString);
         }
 
         [Test]
@@ -64,7 +86,7 @@ namespace SortedArrayTests
             sa.Insert("Two Thing");
             sa.Insert("Three Thing");
             sa.Insert("Four Thing");
-            // TODO: Throw different or new exception? 
+            // TODO: Throw a different or new exception? 
             Assert.Throws<IndexOutOfRangeException>(() => sa.Insert("Five Thing"));
         }
 

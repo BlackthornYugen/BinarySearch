@@ -14,13 +14,18 @@ namespace SortedArrayTests
         /// </summary>
         /// <param name="s">A string of chars to insert</param>
         /// <param name="i">The index to look for the last char</param>
-        [TestCase("B", 0)]
-        [TestCase("BD", 1)]
-        [TestCase("BDC", 1)]
-        [TestCase("BDCA", 0)]
-        public void SortPositionTest(String s, int i)
+        /// <param name="arraySize">The size of the array</param>
+        [TestCase("B", 0, 4)]
+        [TestCase("B", 0, 5)]
+        [TestCase("BD", 1, 4)]
+        [TestCase("BD", 1, 5)]
+        [TestCase("BDC", 1, 4)]
+        [TestCase("BDC", 1, 5)]
+        [TestCase("BDCA", 0, 4)]
+        [TestCase("BDCA", 0, 5)]
+        public void SortPositionTest(String s, int i, int arraySize)
         {
-            var sa = new SortedArray<char>(4);
+            var sa = new SortedArray<char>(arraySize);
             char lastChar = ' ';
             foreach (char c in s)
             {
@@ -31,13 +36,17 @@ namespace SortedArrayTests
             Assert.AreEqual(lastChar.ToString(CultureInfo.InvariantCulture), sa[i].ToString(CultureInfo.InvariantCulture));
         }
 
-        [TestCase("B", "B")]
-        [TestCase("BD", "BD")]
-        [TestCase("BDC", "BCD")]
-        [TestCase("BDCA", "ABCD")]
-        public void SortFullTest(String unsortedString, String expectedString)
+        [TestCase("B", "B", 4)]
+        [TestCase("BD", "BD", 4)]
+        [TestCase("BDC", "BCD", 4)]
+        [TestCase("BDCA", "ABCD", 4)]
+        [TestCase("B", "B", 5)]
+        [TestCase("BD", "BD", 5)]
+        [TestCase("BDC", "BCD", 5)]
+        [TestCase("BDCA", "ABCD", 5)]
+        public void SortFullTest(String unsortedString, String expectedString, int arraySize)
         {
-            var sa = new SortedArray<char>(4);
+            var sa = new SortedArray<char>(arraySize);
             foreach (char c in unsortedString)
             {
                 sa.Insert(c);

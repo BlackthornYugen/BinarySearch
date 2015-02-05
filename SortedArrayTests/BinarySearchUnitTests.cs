@@ -16,22 +16,22 @@ namespace SortedArrayTests
         [TestCase(4, 'Z')]
         public void CheckIndecies(int i, char c)
         {
-            var comparables = new IComparable<char>[] { 'A', 'C', 'E', 'F', 'Z' };
-            Assert.AreEqual(i, comparables.BinarySearch(c));
+            var comparables = new IComparable[] { 'A', 'C', 'E', 'F', 'Z' };
+            Assert.AreEqual(i, comparables.BinaryLocate(c));
         }
 
         [TestCase(0, 'A', 0)]
         [TestCase(-1, 'B', 3)]
-        [TestCase(1, 'C', -1, ExpectedException = typeof(IndexOutOfRangeException))]
-        [TestCase(1, 'C', 6, ExpectedException = typeof(IndexOutOfRangeException))]
-        [TestCase(-1, 'D', 100, ExpectedException = typeof(IndexOutOfRangeException))]
+        [TestCase(1, 'C', -1, ExpectedException = typeof(ArgumentOutOfRangeException))]
+        [TestCase(1, 'C', 6, ExpectedException = typeof(ArgumentOutOfRangeException))]
+        [TestCase(-1, 'D', 100, ExpectedException = typeof(ArgumentOutOfRangeException))]
         [TestCase(2, 'E', 2)]
         [TestCase(-1, 'F', 2)]
         [TestCase(-1, 'Z', 3)]
         public void CheckIndecies(int i, char c, int high)
         {
-            var comparables = new IComparable<char>[] { 'A', 'C', 'E', 'F', 'Z' };
-            Assert.AreEqual(i, comparables.BinarySearch(c, high));
+            var comparables = new IComparable[] { 'A', 'C', 'E', 'F', 'Z' };
+            Assert.AreEqual(i, comparables.BinaryLocate(c, high));
         }
     }
 }

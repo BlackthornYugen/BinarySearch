@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinarySearch.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="SortedArray.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Player.cs
+ * The Player Class
+ * 
+ * Revision History: 
+    John Steel <jsteel-cc@conestogac.on.ca>	2015-02-05 6:13:50 AM -05:00	Downloaded from K Drive
+ */
+
+using System;
 
 namespace JSA1SortedArray
 {

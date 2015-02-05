@@ -1,8 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/* Toolbox.cs
+ * A class that holds the binary search methods
+ * 
+ * Revision History:
+ * ID	Author	Date	Message
+    John Steel <jsteel-cc@conestogac.on.ca>	2015-02-05 06:13:50 AM -05:00	Added tests for Player; 6/6 pass.
+    John Steel <jsteel-cc@conestogac.on.ca>	2015-02-04 06:00:32 AM -05:00	Binary Search 15/15 SortedArray 12/12
+    John Steel <jsteel-cc@conestogac.on.ca>	2015-02-03 11:14:56 PM -05:00	Added binary search tests and currently two of seven pass (all paths return -1)
+    John Steel <jsteel-cc@conestogac.on.ca>	2015-02-03 09:52:57 PM -05:00	10 of 12 tests pass and refactored binarysearch out of sorted array.
+ */
+
+using System;
 
 namespace JSA1SortedArray
 {

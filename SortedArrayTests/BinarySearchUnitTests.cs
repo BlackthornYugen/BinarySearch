@@ -1,5 +1,13 @@
-﻿using System;
-using System.Globalization;
+﻿/* BinarySearchUnitTests.cs
+ * The unit tests for the Binary Search methods
+ * 
+ * Revision History: 
+ * ID	Author	Date	Message
+    John Steel <jsteel-cc@conestogac.on.ca>	2015-02-05 6:13:50 AM -05:00	Added tests for Player; 6/6 pass.
+    John Steel <jsteel-cc@conestogac.on.ca>	2015-02-04 6:25:31 AM -05:00	Finished insert so that items are pushed back in array. SortedArrayUnitTests 16/16 pass. (PS: For some reason git wasn't tracking the sorted array unit tests previously)
+ */
+
+using System;
 using JSA1SortedArray;
 using NUnit.Framework;
 
